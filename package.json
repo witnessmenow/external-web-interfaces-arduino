@@ -20,6 +20,6 @@
   "dependencies": {
     "cors": "^2.8.1",
     "express": "^4.15.2",
-    "forever": "^0.15.3",
+    "forever": "^0.15.3"
   }
 }
