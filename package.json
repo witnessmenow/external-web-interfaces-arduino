@@ -1,0 +1,24 @@
+{
+  "name": "external-web-interfaces-arduino",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/witnessmenow/external-web-interfaces-arduino.git"
+  },
+  "author": "Brian Lough <ecenuig@gmail.com> (https://www.youtube.com/channel/UCezJOfu7OtqGzd5xrP3q6WA)",
+  "license": "ISC",
+
+  "bugs": {
+    "url": "https://github.com/witnessmenow/external-web-interfaces-arduino/issues"
+  },
+  "homepage": "https://github.com/witnessmenow/external-web-interfaces-arduino#readme",
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.15.2"
+  }
+}
