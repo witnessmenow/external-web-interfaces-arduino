@@ -20,16 +20,45 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
       function getDataFromEsp8266(){
-        $.ajax("http://192.168.1.42/data")
+        $.ajax("http://" + arduinoIp + "/data")
         .done(function(msg) {
-          $( "div.content" ).html(JSON.stringify(msg));
-        })
+          $( "div.content" ).empty();
+          var keys = Object.keys(msg)
+          keys.forEach(function (key){
+            if(msg.hasOwnProperty(key)){
+              var text = key + ": " + msg[key];
+              $( "div.content" ).append("<div>" + text + "</div>");
+              $( "div.content" ).append("<br />");
+            }
+          })
+        });
       }
 
       function loop() {
         getDataFromEsp8266();
       }
-      setInterval(loop, 5000);
+
+      function getSearchParams(k){
+        var p={};
+        location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
+        return k?p[k]:p;
+      }
+
+      var arduinoIp;
+      var title;
+
+      $( document ).ready(function() {
+        title = getSearchParams("title");
+        if(title) {
+          $("h1").text(decodeURI(title));
+        }
+        arduinoIp = getSearchParams("ip");
+        if(arduinoIp){
+          setInterval(loop, 5000);
+        } else {
+          $( "div.content" ).html("No Url set");
+        }
+      });
     </script>
   </body>
 </html>
